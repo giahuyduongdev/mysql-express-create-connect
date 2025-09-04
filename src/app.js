@@ -1,11 +1,15 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
+const responseTime = require('response-time');
+const { createRateLimiter } = require('./middlewares/ratelimit');
 const getConnection = require('./dbs/normal');
 const poolConnection = require('./dbs/pool2');
 
 // init middlewares
 app.use(morgan('dev'));
+app.use(responseTime());
+app.use(createRateLimiter(20));
 
 
 app.get('/normal', async (req, res) => {

@@ -1,3 +1,4 @@
+'use strict';
 const mysql = require('mysql2/promise');
 
 const getConnection = async () => {
@@ -7,6 +8,8 @@ const getConnection = async () => {
     port: '3308',
     password: 'testpass',
     database: 'aliconcon',
+    connectionLimit: 10,
+    multipleStatements: true,
     insecureAuth: true
   });
 };

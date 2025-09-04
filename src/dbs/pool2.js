@@ -1,3 +1,4 @@
+'use strict';
 const mysql = require('mysql2/promise');
 
 const poolConnection = mysql.createPool({
@@ -6,6 +7,7 @@ const poolConnection = mysql.createPool({
   port: '3308',
   password: 'testpass',
   database: 'aliconcon',
+  multipleStatements: true,
   connectionLimit: 10,
 });
 
